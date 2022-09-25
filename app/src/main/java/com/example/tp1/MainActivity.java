@@ -1,7 +1,12 @@
 package com.example.tp1;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +15,27 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView resultMessage;
     private Button btnGetAverage, btnViewPictures;
+
+    ActivityResultLauncher<Intent> activityLauncher =
+            registerForActivityResult(
+                    new ActivityResultContracts.StartActivityForResult(),
+                    new ActivityResultCallback<ActivityResult>() {
+
+                        @Override
+                        public void onActivityResult(ActivityResult result) {
+                            if (result != null && result.getResultCode() == RESULT_OK) {
+                                Intent intent = result.getData();
+
+                                Bundle extras = intent.getExtras();
+                                String identity = extras.getString(Fragment1.EXTRA_IDENTITY);
+                                float mark1 = extras.getFloat(Fragment1.EXTRA_MARK1);
+                                float mark2 = extras.getFloat(Fragment1.EXTRA_MARK2);
+                                float mark3 = extras.getFloat(Fragment1.EXTRA_MARK3);
+
+                                resultMessage.setText(identity + "a obtenu une moyenne de " + String.format("%.2f", (mark1 + mark2 + mark3) / 3));
+                            }
+                        }
+                    });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         btnGetAverage.setOnClickListener(this);
         btnViewPictures.setOnClickListener(this);
+
     }
 
     @Override
@@ -30,6 +57,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
 
             case R.id.btnGetAverage:
+                Intent intent = new Intent(this, Activity2.class);
+                activityLauncher.launch(intent);
                 break;
 
             case R.id.btnViewPictures:
