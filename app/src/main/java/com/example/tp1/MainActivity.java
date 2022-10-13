@@ -57,11 +57,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
 
             case R.id.btnGetAverage:
-                Intent intent = new Intent(this, Activity2.class);
-                activityLauncher.launch(intent);
+                Intent intentAverage = new Intent(this, Activity2.class);
+                activityLauncher.launch(intentAverage);
                 break;
 
             case R.id.btnViewPictures:
+                Intent intentPictures = new Intent(this, Activity3.class);
+                activityLauncher.launch(intentPictures);
                 break;
 
         }
