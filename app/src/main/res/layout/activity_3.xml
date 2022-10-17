@@ -14,22 +14,29 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"/>
 
-    <Button
-        android:id="@+id/swap"
-        android:text="Changer l'image"
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/fragmentContainer"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        app:layout_constraintLeft_toLeftOf="@id/fragmentContainer"
+        app:layout_constraintRight_toRightOf="@id/fragmentContainer">
 
-    <Button
-        android:id="@+id/retour"
-        android:text="Retour"
-        app:layout_constraintTop_toBottomOf="@id/swap"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/retour"
+            android:text="Retour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"/>
+
+        <Button
+            android:id="@+id/swap"
+            android:text="Changer l'image"
+            app:layout_constraintTop_toBottomOf="@id/fragmentContainer"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
