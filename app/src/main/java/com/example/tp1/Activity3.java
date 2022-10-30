@@ -64,9 +64,8 @@ public class Activity3 extends AppCompatActivity {
             setFragment(new FragmentImage1(), true);
     }
 
-    // Launches main activity
+    // Brings back to main activity
     private void back(View view) {
-        Intent myIntent = new Intent(Activity3.this, MainActivity.class);
-        Activity3.this.startActivity(myIntent);
+        finish();
     }
 }
