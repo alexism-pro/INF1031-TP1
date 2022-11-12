@@ -22,7 +22,6 @@ public class Activity3 extends AppCompatActivity {
     FragmentManager fragManager;
     private FrameLayout fragContainer;
     private Fragment currentFrag;
-    private int currentFragNumber;
     private Button btnSwap;
     private Button btnRetour;
     private Activity3Binding binding;
