@@ -1,6 +1,7 @@
 package com.example.tp1;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
 import androidx.fragment.app.FragmentManager;
@@ -13,18 +14,28 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 
+import com.example.tp1.databinding.Activity3Binding;
+import com.example.tp1.databinding.Activity3BindingImpl;
+
 public class Activity3 extends AppCompatActivity {
 
     FragmentManager fragManager;
     private FrameLayout fragContainer;
     private Fragment currentFrag;
+    private int currentFragNumber;
     private Button btnSwap;
     private Button btnRetour;
+    private Activity3Binding binding;
+    private String txtImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_3);
+
+        // Get binding object
+        this.binding = DataBindingUtil.setContentView(this, R.layout.activity_3);
+        this.txtImage = getString(R.string.txt_image_activity);
 
         init();
         setFragment(new FragmentImage1(), false);
@@ -54,6 +65,10 @@ public class Activity3 extends AppCompatActivity {
         // End
 
         currentFrag = frag;
+        if(currentFrag instanceof FragmentImage1)
+            this.binding.setTxtImageVisible(String.format(this.txtImage, 1));
+        else if (currentFrag instanceof FragmentImage2)
+            this.binding.setTxtImageVisible(String.format(this.txtImage, 2));
     }
 
     // Swaps the picture on the click of the button
